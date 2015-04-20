@@ -1,0 +1,8 @@
+packer template for FreeBSD
+
+This is an old version that needs to get updated for FreeBSD 10.1. This
+version breaks when adding packages. Currently uses packer v0.7.5.
+
+```
+packer build freebsd.json
+```

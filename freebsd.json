@@ -1,0 +1,72 @@
+{
+    "builders": [
+        {
+            "type": "vmware-iso",
+            "vm_name": "freebsd-vmware",
+            "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/ISO-IMAGES-amd64/10.0/FreeBSD-10.0-BETA3-amd64-disc1.iso",
+            "iso_checksum": "ffae9adf91e6030e0f83fecb4fe1a1cc3e8478efddbd0e2cfa5457b3e01a5134",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "root",
+            "ssh_password": "root",
+            "ssh_wait_timeout": "300s",
+            "http_directory": "http",
+            "shutdown_command": "shutdown -p now",
+            "boot_command": [
+                "<enter><wait10><wait10>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "vagrant<enter><wait>",
+                "g p <enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<wait10><wait10><wait10><wait10>",
+                "root<enter><wait>root<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait5>",
+                "n<wait><enter><wait>",
+                "<enter><wait>",
+                "a<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "vagrant<enter>",
+                "vagrant<enter>",
+                "<enter>",
+                "<enter>",
+                "wheel<enter>",
+                "<enter>",
+                "<enter>",
+                "<enter>",
+                "<enter>",
+                "<enter>",
+                "<enter>",
+                "<enter>",
+                "vagrant<enter>",
+                "vagrant<enter>",
+                "<enter>",
+                "yes<enter>",
+                "no<enter>",
+                "<enter><wait>",
+                "<enter><wait>",
+                "y<enter><wait>",
+                "echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config",
+                "<enter><wait>",
+                "exit<enter><wait>",
+                "<enter><wait>"
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "env {{ .Vars }} /bin/sh '{{ .Path }}'",
+            "script": "setup.sh"
+        }
+    ],
+    "post-processors": ["vagrant"]
+}
